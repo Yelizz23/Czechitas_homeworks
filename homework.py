@@ -27,12 +27,13 @@ class Estate(Property):
             coefficient = 0.35
         else:
             coefficient = 0
-        
+
         tax = self.area * coefficient * self.locality.coefficient
         return ceil(tax)
 
     def __str__(self):
-        return f"Pozemek v lokalitě {self.locality.name} (koeficient {self.locality.coefficient}), s plochou {self.area} metrů čtverečních. Daň celkem k zaplacení {self.calculate_tax()} Kč."
+        return (f"Pozemek v lokalitě {self.locality.name} (koeficient {self.locality.coefficient}), "
+                f"s plochou {self.area} metrů čtverečních. Daň celkem k zaplacení {self.calculate_tax()} Kč.")
 
 
 class Residence(Property):
@@ -48,8 +49,10 @@ class Residence(Property):
         return ceil(tax)
 
     def __str__(self):
-        return f"Prostory v lokalitě {self.locality.name} (koeficient {self.locality.coefficient}), s podlahovou plochou {self.area} metrů čtverečních, ke komerčnímu využití: {'ANO' if self.commercial else 'NE'}. Daň celkem k zaplacení {self.calculate_tax()} Kč."
-    
+        return (f"Prostory v lokalitě {self.locality.name} (koeficient {self.locality.coefficient}), "
+                f"s podlahovou plochou {self.area} metrů čtverečních, ke komerčnímu využití: "
+                f"{'ANO' if self.commercial else 'NE'}. Daň celkem k zaplacení {self.calculate_tax()} Kč.")
+
 
 if __name__ == "__main__":
     manetin = Locality("Manětín", 1.4)
@@ -61,12 +64,12 @@ if __name__ == "__main__":
     residence_1 = Residence(manetin, 120)
     residence_2 = Residence(brno, 90, True)
 
-    print("-----------------------------------------------------------------------------------------------------------------------------------------------------")
+    print("-" * 120)
     print(estate_1)
-    print("-----------------------------------------------------------------------------------------------------------------------------------------------------")
+    print("-" * 120)
     print(estate_2)
-    print("-----------------------------------------------------------------------------------------------------------------------------------------------------")
+    print("-" * 120)
     print(residence_1)
-    print("-----------------------------------------------------------------------------------------------------------------------------------------------------")
+    print("-" * 120)
     print(residence_2)
-    print("-----------------------------------------------------------------------------------------------------------------------------------------------------")
+    print("-" * 120)
